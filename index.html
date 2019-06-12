@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Battleship but it's a river</title>
+    <style>
+        .tile{
+            border: 1px solid gray;
+            padding: 5px 8px;
+        }
+        
+        
+        
+    </style>
+</head>
+<body>
+    <h1>battleship but it's in a river and the navy is only 1 ship</h1>
+    <hr>
+    <p>guess a location from 1 to 20</p>
+    <input id="input" type="text"/>
+    <input type="button" value="Submit" id="button"/>
+    <br>
+    <br>
+    <span class='tile'>&nbsp;</span>
+<script>
+    // I'm having issues getting my code to work beyond the first loop. once the first input is sent, the loop continues on without stopping for additional input. the program just uses the first input for all of the guesses.
+    var map = [0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0];
+var locator = Math.floor(Math.random() * 18);
+map[locator] = 1;
+map[locator + 1] = 1;
+map[locator + 2] = 1;
+var isSunk = false;
+var guess = 0;
+var GUESSES = 6;
+
+     function game() { // I'm under the impression that my issue was caused by the while loop being in the function, but moving the function opener (to places marked w an arrow) just breaks the entire website.
+while(!isSunk && guess < GUESSES) {
+    // <-
+    document.write("<h1>battleship but it's in a river and the navy is only 1 ship</h1>");
+    document.write("<hr>");
+    document.write("<p>guess a location from 1 to 20</p>");
+    document.write("<input id=\"input\" type=\"text\"/>");
+    document.write("<input type=\"button\" value=\"Submit\" id=\"button\"/>");
+    document.write("<br>");
+   // <-
+    var shoot = document.getElementById("input");
+// <-
+    if(shoot == locator){
+        map[locator]++;
+        document.write("hit!");
+        guess++;
+    }
+    else if(shoot == locator+1){
+        map[locator+1]++;
+        document.write("hit!");
+        guess++;
+    }
+    else if(shoot == locator+2){
+        map[locator+2]++;
+        document.write("hit!");
+        guess++;
+    }
+    else{
+        document.write("miss!");
+        guess++;
+    }
+    if(map[locator]>1 && map[locator+1]>1 && map[locator+2]>1){
+        isSunk = true;
+    }
+    
+}   
+}
+        var btn = document.getElementById("button"); // I suspected that maybe this section had to be placed higher so that the function could start, but moving next to the other variable declarations does not fix anything.
+        btn.onclick = game;</script>   
+<p>guesses remaining: <script>document.write(GUESSES-guess);</script></p>
+    
+    
+</body>
+
+
+
+
+</html>
